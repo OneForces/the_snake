@@ -42,7 +42,7 @@ clock = pygame.time.Clock()
 class GameObject:
     """Базовый класс для игровых объектов."""
 
-    def __init__(self, position, body_color):
+    def __init__(self, position=(0, 0), body_color=(255, 255, 255)):
         """
         Инициализация объекта.
         :param position: позиция объекта на поле.
@@ -86,7 +86,9 @@ class Snake(GameObject):
 
     def __init__(self):
         """Инициализация змейки."""
+        super().__init__()
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
+        self.position = self.positions[0]  # Определение атрибута `position`
         self.body_color = SNAKE_COLOR
         self.length = 1
         self.direction = RIGHT
@@ -140,6 +142,7 @@ class Snake(GameObject):
         """Сбрасывает состояние змейки."""
         self.length = 1
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
+        self.position = self.positions[0]  # Определение атрибута `position`
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
         self.last = None
 
